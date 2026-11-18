@@ -1,0 +1,263 @@
+{
+  "info": {
+    "name": "Employee & Department Management API",
+    "description": "API tests for the Spring Boot assignment. Run requests in the suggested order; create IDs are assumed to be 1 in later sample requests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+    {
+      "name": "Departments",
+      "item": [
+        {
+          "name": "Create Engineering Department",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Engineering\",\n  \"description\": \"Builds and maintains software\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/departments"
+          }
+        },
+        {
+          "name": "Get All Departments",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/departments"
+          }
+        },
+        {
+          "name": "Get Department With Employees",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/departments/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Employees",
+      "item": [
+        {
+          "name": "Create Employee - Asha",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Asha Rao\",\n  \"email\": \"asha@example.com\",\n  \"salary\": 65000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/employees"
+          }
+        },
+        {
+          "name": "Create Employee - Rahul",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rahul Kumar\",\n  \"email\": \"rahul@example.com\",\n  \"salary\": 48000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/employees"
+          }
+        },
+        {
+          "name": "Assign Employee 1 to Department 1",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"departmentId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/employees/1/department"
+          }
+        },
+        {
+          "name": "Assign Employee 2 to Department 1",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"departmentId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/employees/2/department"
+          }
+        },
+        {
+          "name": "Get All Employees",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/employees"
+          }
+        },
+        {
+          "name": "Get Employee 1",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/employees/1"
+          }
+        },
+        {
+          "name": "Update Employee 1",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Asha Rao\",\n  \"email\": \"asha.rao@example.com\",\n  \"salary\": 70000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/employees/1"
+          }
+        },
+        {
+          "name": "Employees By Department 1",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/employees/department/1"
+          }
+        },
+        {
+          "name": "Salary Greater Than 50000",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/employees/search/salary-greater-than?amount=50000"
+          }
+        },
+        {
+          "name": "Name Contains an",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/employees/search/name?keyword=an"
+          }
+        },
+        {
+          "name": "Salary Between 40000 and 80000",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/employees/search/salary-between?min=40000&max=80000"
+          }
+        },
+        {
+          "name": "JPQL - Department Name",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/employees/search/department-name?name=Engineering"
+          }
+        },
+        {
+          "name": "Native SQL - Salary At Least 50000",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/employees/search/native-salary?min=50000"
+          }
+        },
+        {
+          "name": "Page 0, 5 rows, salary descending",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/employees/page?page=0&size=5&sortBy=salary&direction=desc"
+          }
+        },
+        {
+          "name": "Delete Employee 2",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/employees/2"
+          }
+        },
+        {
+          "name": "Invalid Employee Request - Validation Test",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"email\": \"not-an-email\",\n  \"salary\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/api/employees"
+          }
+        }
+      ]
+    }
+  ]
+}
